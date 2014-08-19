@@ -80,17 +80,22 @@ ${BINDIR}:
 #
 # Rules for building this example.
 #
-${BINDIR}/${PRJ_NAME}.axf: ${OBJDIR}/startup_${COMPILER}.o
 ${BINDIR}/${PRJ_NAME}.axf: ${OBJDIR}/main.o
+${BINDIR}/${PRJ_NAME}.axf: ${OBJDIR}/pinmux.o
+
+# common
+${BINDIR}/${PRJ_NAME}.axf: ${OBJDIR}/startup_${COMPILER}.o
+${BINDIR}/${PRJ_NAME}.axf: ${OBJDIR}/uart_if.o
 
 # driverLib
 ${BINDIR}/${PRJ_NAME}.axf: ${OBJDIR}/cpu.o
 ${BINDIR}/${PRJ_NAME}.axf: ${OBJDIR}/flash.o
 ${BINDIR}/${PRJ_NAME}.axf: ${OBJDIR}/interrupt.o
+${BINDIR}/${PRJ_NAME}.axf: ${OBJDIR}/pin.o
 ${BINDIR}/${PRJ_NAME}.axf: ${OBJDIR}/prcm.o
+${BINDIR}/${PRJ_NAME}.axf: ${OBJDIR}/uart.o
 ${BINDIR}/${PRJ_NAME}.axf: ${OBJDIR}/utils.o
 
-#${BINDIR}/${PRJ_NAME}.axf: ${OBJDIR}/pinmux.o
 #${BINDIR}/${PRJ_NAME}.axf: ${OBJDIR}/firmware_download.o
 #${BINDIR}/${PRJ_NAME}.axf: ${OBJDIR}/broadcast.o
 #${BINDIR}/${PRJ_NAME}.axf: ${OBJDIR}/server.o

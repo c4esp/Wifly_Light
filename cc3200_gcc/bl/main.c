@@ -76,16 +76,14 @@ int main()
 {
 	BoardInit();
 
-	//
 	// Configure the pinmux settings for the peripherals exercised
-	//
-//	PinMuxConfig();
+	PinMuxConfig();
 
 	//
 	// Configuring UART
 	//
-//	InitTerm();
-//	Message("HUHU");
+	InitTerm();
+	Message("HUHU");
 //	sl_WlanPolicySet();
 
 
