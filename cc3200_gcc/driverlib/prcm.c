@@ -527,7 +527,7 @@ PRCMLPDSRestoreInfoSet(unsigned long ulStackPtr, unsigned long ulProgCntr)
 void
 PRCMLPDSEnter()
 {
-  volatile unsigned long ulDelay;
+//  volatile unsigned long ulDelay;
 
   //
   // Check if flash exists

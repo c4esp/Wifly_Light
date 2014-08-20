@@ -34,16 +34,18 @@ VPATH+=${ROOT}/driverlib
 #CFLAGS+=-DSL_PLATFORM_MULTI_THREADED
 #CFLAGS+=-DUSE_FREERTOS
 
-CFLAGS+=-Dcc3200
+#CFLAGS+=-Dcc3200
+CFLAGS+=-pedantic
+CFLAGS+=-Wall
 
 #
 # Where to find header files that do not live in the source directory.
 #
 IPATH=${ROOT}
 IPATH+=${ROOT}/bl
+IPATH+=${ROOT}/common
 IPATH+=${ROOT}/inc
 IPATH+=${ROOT}/driverlib
-#IPATH+=${ROOT}/common
 #IPATH+=../..
 #IPATH+=${ROOT}/oslib
 #IPATH+=${ROOT}/simplelink

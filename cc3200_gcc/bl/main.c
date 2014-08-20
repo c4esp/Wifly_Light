@@ -22,37 +22,21 @@
 #include "hw_ints.h"
 
 // driverlib includes
+#include "prcm.h"
 #include "rom_map.h"
 #include "interrupt.h"
-/**
-#include <string.h>
-#include <stdint.h>
-#include "hw_memmap.h"
-
-// SimpleLink includes
-#include "simplelink.h"
-
-#include "rom.h"
-#include "prcm.h"
-#include "utils.h"
 
 // common interface includes
 #include "uart_if.h"
-#include "pinmux.h"
 
 // wylight includes
-#include "firmware_download.h"
-
-#define UART_PRINT          Report
-#define APP_NAME            "WyLight Bootloader"
-//*/
+#include "pinmux.h"
 
 
-// Loop forever, user can change it as per application's requirement
-#define LOOP_FOREVER(line_number) \
-            {\
-                while(1); \
-            }
+#define APP_VERSION "0.1"
+#define APP_NAME    "WyLight Bootloader"
+
+
 
 // GLOBAL VARIABLES -- Start
 extern void (* const g_pfnVectors[])(void);
@@ -72,6 +56,28 @@ static void BoardInit(void)
 	PRCMCC3200MCUInit();
 }
 
+static int IsNormalStartup()
+{
+	// read force bootloader GPIO
+	
+	//return BootloaderGPIO == CLEARED;
+	return 1;
+}
+
+static int IsFwAvailable()
+{
+	// locate firmware
+	// load firmware
+	// return checksum == okay
+	return 0;
+}
+
+static void RunFw()
+{
+	// prepare interrupt vector table?
+	// jump
+}
+
 int main()
 {
 	BoardInit();
@@ -79,16 +85,26 @@ int main()
 	// Configure the pinmux settings for the peripherals exercised
 	PinMuxConfig();
 
-	//
 	// Configuring UART
-	//
 	InitTerm();
-	Message("HUHU");
-//	sl_WlanPolicySet();
+	Message(APP_NAME " " APP_VERSION "\r\n");
 
 
-
-	LOOP_FOREVER(__LINE__);
-
+	if (IsNormalStartup() && IsFwAvailable()) {
+		RunFw();
+	}
+	
+	// start AP
+	
+	// download fw
+	
+	// verify fw
+	
+	// write fw
+	
+	// reboot
+	
+	// yes, we should never reach this...
+	for(;;);
 }
 
